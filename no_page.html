@@ -1,538 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Heart Says No...</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667ee0, #764ba2, #667ee0);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow-x: hidden;
+        animation: backgroundShift 15s ease infinite;
+        background-size: 400% 400%;
+      }
+
+      @keyframes backgroundShift {
+        0% {
+          background-position: 0% 50%;
         }
-        
-        body {
-            background: linear-gradient(135deg, #667ee0, #764ba2, #667ee0);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-            animation: backgroundShift 15s ease infinite;
-            background-size: 400% 400%;
+        50% {
+          background-position: 100% 50%;
         }
-        
-        @keyframes backgroundShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        100% {
+          background-position: 0% 50%;
         }
-        
-        .container {
-            max-width: 900px;
-            width: 100%;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.92);
-            border-radius: 25px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            border: 8px solid #764ba2;
-            animation: fadeIn 1.5s ease-out;
+      }
+
+      .container {
+        max-width: 900px;
+        width: 100%;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.92);
+        border-radius: 25px;
+        padding: 40px 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        border: 8px solid #764ba2;
+        animation: fadeIn 1.5s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        
-        .container::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
-            z-index: 0;
-            animation: float 20s linear infinite;
+      }
+
+      .container::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 30px 30px;
+        z-index: 0;
+        animation: float 20s linear infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
         }
-        
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(-30px, -30px) rotate(360deg); }
+        100% {
+          transform: translate(-30px, -30px) rotate(360deg);
         }
-        
+      }
+
+      .header_text {
+        font-size: 3.5rem;
+        color: #764ba2;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+        text-shadow: 3px 3px 0 rgba(118, 75, 162, 0.2);
+        animation: textGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes textGlow {
+        from {
+          text-shadow: 3px 3px 0 rgba(118, 75, 162, 0.2), 0 0 10px rgba(118, 75, 162, 0.4);
+        }
+        to {
+          text-shadow: 3px 3px 0 rgba(118, 75, 162, 0.2), 0 0 20px rgba(118, 75, 162, 0.6);
+        }
+      }
+
+      .subtitle {
+        font-size: 1.8rem;
+        color: #667ee0;
+        margin-bottom: 40px;
+        font-weight: 300;
+        position: relative;
+        z-index: 1;
+      }
+
+      .gif_container {
+        margin: 30px auto;
+        max-width: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 1;
+        border: 5px solid #764ba2;
+      }
+
+      .gif_container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .gif_container:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Styling untuk hati retak */
+      .broken-heart {
+        font-size: 80px;
+        color: #764ba2;
+        margin: 20px 0;
+        animation: brokenHeartBeat 2s ease-in-out infinite;
+        position: relative;
+      }
+
+      @keyframes brokenHeartBeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .broken-heart::before,
+      .broken-heart::after {
+        content: "💔";
+        position: absolute;
+        animation: crackAnimation 3s ease-in-out infinite;
+      }
+
+      @keyframes crackAnimation {
+        0%,
+        100% {
+          transform: translateX(0) rotate(0deg);
+        }
+        25% {
+          transform: translateX(-5px) rotate(-5deg);
+        }
+        75% {
+          transform: translateX(5px) rotate(5deg);
+        }
+      }
+
+      .whatsapp-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #25d366;
+        color: white;
+        font-size: 1.4rem;
+        font-weight: bold;
+        padding: 18px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        margin: 30px auto;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        position: relative;
+        z-index: 1;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .whatsapp-button:hover {
+        background-color: #128c7e;
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
+      }
+
+      .whatsapp-button:active {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
+      }
+
+      .whatsapp-icon {
+        font-size: 2rem;
+        margin-right: 15px;
+      }
+
+      .whatsapp-button::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: -100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.7s;
+      }
+
+      .whatsapp-button:hover::after {
+        left: 100%;
+      }
+
+      .message {
+        font-size: 1.4rem;
+        line-height: 1.8;
+        color: #555;
+        margin: 40px 0;
+        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .heart-counter {
+        font-size: 1.2rem;
+        color: #764ba2;
+        margin-top: 20px;
+        font-weight: bold;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer {
+        margin-top: 30px;
+        font-size: 1.2rem;
+        color: #667ee0;
+        position: relative;
+        z-index: 1;
+        font-weight: bold;
+      }
+
+      .rain-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .raindrop {
+        position: absolute;
+        background-color: rgba(118, 75, 162, 0.3);
+        width: 2px;
+        height: 20px;
+        animation: rainFall 2s linear infinite;
+        border-radius: 10px;
+      }
+
+      @keyframes rainFall {
+        0% {
+          transform: translateY(-100px) rotate(15deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(15deg);
+          opacity: 0;
+        }
+      }
+
+      .broken-heart-particle {
+        position: absolute;
+        font-size: 20px;
+        opacity: 0;
+        animation: brokenHeartFloat 5s linear infinite;
+      }
+
+      @keyframes brokenHeartFloat {
+        0% {
+          transform: translateY(100vh) rotate(0deg) scale(1);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.7;
+        }
+        90% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(-100px) rotate(180deg) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
         .header_text {
-            font-size: 3.5rem;
-            color: #764ba2;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 3px 3px 0 rgba(118, 75, 162, 0.2);
-            animation: textGlow 3s ease-in-out infinite alternate;
+          font-size: 2.5rem;
         }
-        
-        @keyframes textGlow {
-            from { text-shadow: 3px 3px 0 rgba(118, 75, 162, 0.2), 0 0 10px rgba(118, 75, 162, 0.4); }
-            to { text-shadow: 3px 3px 0 rgba(118, 75, 162, 0.2), 0 0 20px rgba(118, 75, 162, 0.6); }
-        }
-        
+
         .subtitle {
-            font-size: 1.8rem;
-            color: #667ee0;
-            margin-bottom: 40px;
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
+          font-size: 1.5rem;
         }
-        
-        .gif_container {
-            margin: 30px auto;
-            max-width: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            position: relative;
-            z-index: 1;
-            border: 5px solid #764ba2;
-        }
-        
-        .gif_container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .gif_container:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* Styling untuk hati retak */
-        .broken-heart {
-            font-size: 80px;
-            color: #764ba2;
-            margin: 20px 0;
-            animation: brokenHeartBeat 2s ease-in-out infinite;
-            position: relative;
-        }
-        
-        @keyframes brokenHeartBeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        .broken-heart::before,
-        .broken-heart::after {
-            content: "💔";
-            position: absolute;
-            animation: crackAnimation 3s ease-in-out infinite;
-        }
-        
-        @keyframes crackAnimation {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            25% { transform: translateX(-5px) rotate(-5deg); }
-            75% { transform: translateX(5px) rotate(5deg); }
-        }
-        
-        .whatsapp-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #25D366;
-            color: white;
-            font-size: 1.4rem;
-            font-weight: bold;
-            padding: 18px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            margin: 30px auto;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-            position: relative;
-            z-index: 1;
-            border: none;
-            cursor: pointer;
-            overflow: hidden;
-        }
-        
-        .whatsapp-button:hover {
-            background-color: #128C7E;
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
-        }
-        
-        .whatsapp-button:active {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
-        }
-        
-        .whatsapp-icon {
-            font-size: 2rem;
-            margin-right: 15px;
-        }
-        
-        .whatsapp-button::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: -100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s;
-        }
-        
-        .whatsapp-button:hover::after {
-            left: 100%;
-        }
-        
+
         .message {
-            font-size: 1.4rem;
-            line-height: 1.8;
-            color: #555;
-            margin: 40px 0;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          font-size: 1.2rem;
         }
-        
-        .heart-counter {
-            font-size: 1.2rem;
-            color: #764ba2;
-            margin-top: 20px;
-            font-weight: bold;
-            position: relative;
-            z-index: 1;
+
+        .whatsapp-button {
+          font-size: 1.2rem;
+          padding: 15px 25px;
         }
-        
-        .footer {
-            margin-top: 30px;
-            font-size: 1.2rem;
-            color: #667ee0;
-            position: relative;
-            z-index: 1;
-            font-weight: bold;
+
+        .broken-heart {
+          font-size: 60px;
         }
-        
-        .rain-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
+
+        .container {
+          padding: 30px 20px;
         }
-        
-        .raindrop {
-            position: absolute;
-            background-color: rgba(118, 75, 162, 0.3);
-            width: 2px;
-            height: 20px;
-            animation: rainFall 2s linear infinite;
-            border-radius: 10px;
+      }
+
+      @media (max-width: 480px) {
+        .header_text {
+          font-size: 2rem;
         }
-        
-        @keyframes rainFall {
-            0% {
-                transform: translateY(-100px) rotate(15deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(15deg);
-                opacity: 0;
-            }
+
+        .subtitle {
+          font-size: 1.3rem;
         }
-        
-        .broken-heart-particle {
-            position: absolute;
-            font-size: 20px;
-            opacity: 0;
-            animation: brokenHeartFloat 5s linear infinite;
+
+        .message {
+          font-size: 1.1rem;
+          padding: 15px;
         }
-        
-        @keyframes brokenHeartFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg) scale(1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100px) rotate(180deg) scale(0.5);
-                opacity: 0;
-            }
+
+        .whatsapp-button {
+          font-size: 1.1rem;
+          padding: 14px 22px;
         }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .header_text {
-                font-size: 2.5rem;
-            }
-            
-            .subtitle {
-                font-size: 1.5rem;
-            }
-            
-            .message {
-                font-size: 1.2rem;
-            }
-            
-            .whatsapp-button {
-                font-size: 1.2rem;
-                padding: 15px 25px;
-            }
-            
-            .broken-heart {
-                font-size: 60px;
-            }
-            
-            .container {
-                padding: 30px 20px;
-            }
+
+        .whatsapp-icon {
+          font-size: 1.6rem;
+          margin-right: 10px;
         }
-        
-        @media (max-width: 480px) {
-            .header_text {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .message {
-                font-size: 1.1rem;
-                padding: 15px;
-            }
-            
-            .whatsapp-button {
-                font-size: 1.1rem;
-                padding: 14px 22px;
-            }
-            
-            .whatsapp-icon {
-                font-size: 1.6rem;
-                margin-right: 10px;
-            }
-            
-            .broken-heart {
-                font-size: 50px;
-            }
+
+        .broken-heart {
+          font-size: 50px;
         }
+      }
     </style>
-    
+
     <!-- WhatsApp icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1 class="header_text">My Heart Says No...</h1>
-        <p class="subtitle">I'm sorry, but this isn't meant to be 💔</p>
-        
-        <!-- Hati retak animasi -->
-        <div class="broken-heart" id="brokenHeart">💔</div>
-        
-        <div class="gif_container">
-            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTk5b3hmdmV3OGJ1ZWd0ODQ2d2F5a3F6Y2d1eWNuZ2pncG44bG55biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/H5C8CevNMbpBqNqFjl/giphy.gif" alt="Sad broken heart GIF">
-        </div>
-        
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/6281234567890?text=I%20need%20to%20talk%20about%20my%20decision...%20💔%20Can%20we%20chat%20about%20this%20sometime?" 
-           class="whatsapp-button" 
-           target="_blank"
-           id="whatsappBtn">
-            <i class="fab fa-whatsapp whatsapp-icon"></i>
-            Let's talk about this on WhatsApp
-        </a>
-        
-        <div class="message">
-            <p>I want to be honest with you - my heart is telling me this isn't the right path for us. It wasn't an easy decision to make, and I truly appreciate your courage in asking. You're an amazing person who deserves happiness, but I don't think we're meant to be together in that way.</p>
-            <p style="margin-top: 15px; font-style: italic;">I hope we can still respect each other and maybe remain friends. If you'd like to talk about this more, feel free to message me on WhatsApp.</p>
-        </div>
-        
-        <div class="heart-counter">
-            <span id="heartCount">0</span> broken heart pieces floating...
-        </div>
-        
-        <div class="footer">
-            With respect and honesty
-        </div>
-        
-        <div class="rain-container" id="rainContainer"></div>
-        <div class="rain-container" id="brokenHeartsContainer"></div>
+      <h1 class="header_text">My Heart Says No...</h1>
+      <p class="subtitle">I'm sorry, but this isn't meant to be 💔</p>
+
+      <!-- Hati retak animasi -->
+      <div class="broken-heart" id="brokenHeart">💔</div>
+
+      <div class="gif_container">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTk5b3hmdmV3OGJ1ZWd0ODQ2d2F5a3F6Y2d1eWNuZ2pncG44bG55biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/H5C8CevNMbpBqNqFjl/giphy.gif" alt="Sad broken heart GIF" />
+      </div>
+
+      <!-- WhatsApp Button -->
+      <a href="https://wa.me/6281234567890?text=I%20need%20to%20talk%20about%20my%20decision...%20💔%20Can%20we%20chat%20about%20this%20sometime?" class="whatsapp-button" target="_blank" id="whatsappBtn">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+        Let's talk about this on WhatsApp
+      </a>
+
+      <div class="message">
+        <p>
+          I want to be honest with you - my heart is telling me this isn't the right path for us. It wasn't an easy decision to make, and I truly appreciate your courage in asking. You're an amazing person who deserves happiness, but I
+          don't think we're meant to be together in that way.
+        </p>
+        <p style="margin-top: 15px; font-style: italic">I hope we can still respect each other and maybe remain friends. If you'd like to talk about this more, feel free to message me on WhatsApp.</p>
+      </div>
+
+      <div class="heart-counter"><span id="heartCount">0</span> broken heart pieces floating...</div>
+
+      <div class="footer">With respect and honesty</div>
+
+      <div class="rain-container" id="rainContainer"></div>
+      <div class="rain-container" id="brokenHeartsContainer"></div>
     </div>
 
     <script>
-        // Create rain effect
-        function createRain() {
-            const rainContainer = document.getElementById('rainContainer');
-            
-            // Create raindrops continuously
-            setInterval(() => {
-                const raindrop = document.createElement('div');
-                raindrop.classList.add('raindrop');
-                
-                // Random position and animation
-                const left = Math.random() * 100;
-                const duration = Math.random() * 3 + 2;
-                const delay = Math.random() * 2;
-                const height = Math.random() * 15 + 10;
-                
-                raindrop.style.left = `${left}%`;
-                raindrop.style.animationDuration = `${duration}s`;
-                raindrop.style.animationDelay = `${delay}s`;
-                raindrop.style.height = `${height}px`;
-                
-                rainContainer.appendChild(raindrop);
-                
-                // Remove raindrop after animation completes
-                setTimeout(() => {
-                    raindrop.remove();
-                }, (duration + delay) * 1000);
-            }, 100);
-        }
-        
-        // Create broken heart particles
-        function createBrokenHearts() {
-            const heartsContainer = document.getElementById('brokenHeartsContainer');
-            const heartCountElement = document.getElementById('heartCount');
-            let heartCount = 0;
-            
-            // Create broken heart pieces continuously
-            setInterval(() => {
-                const heartPiece = document.createElement('div');
-                heartPiece.classList.add('broken-heart-particle');
-                heartPiece.innerHTML = '💔';
-                
-                // Random position and animation
-                const left = Math.random() * 100;
-                const size = Math.random() * 15 + 10;
-                const duration = Math.random() * 5 + 3;
-                const delay = Math.random() * 2;
-                
-                heartPiece.style.left = `${left}%`;
-                heartPiece.style.fontSize = `${size}px`;
-                heartPiece.style.animationDuration = `${duration}s`;
-                heartPiece.style.animationDelay = `${delay}s`;
-                
-                heartsContainer.appendChild(heartPiece);
-                heartCount++;
-                heartCountElement.textContent = heartCount;
-                
-                // Remove heart piece after animation completes
-                setTimeout(() => {
-                    heartPiece.remove();
-                    heartCount--;
-                    heartCountElement.textContent = heartCount;
-                }, (duration + delay) * 1000);
-            }, 500);
-        }
-        
-        // WhatsApp button interaction
-        function setupWhatsAppButton() {
-            const whatsappBtn = document.getElementById('whatsappBtn');
-            
-            // Add click animation
-            whatsappBtn.addEventListener('click', function(e) {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-                
-                console.log('WhatsApp button clicked for No page');
-            });
-            
-            // Optional: Show a tooltip on hover
-            whatsappBtn.addEventListener('mouseenter', function() {
-                this.title = "Click to open WhatsApp for a respectful conversation";
-            });
-        }
-        
-        // Animate broken heart in header
-        function animateBrokenHeart() {
-            const brokenHeart = document.getElementById('brokenHeart');
-            let scaleDirection = 1;
-            
-            setInterval(() => {
-                const currentScale = parseFloat(window.getComputedStyle(brokenHeart).transform.split(',')[3]) || 1;
-                
-                if (currentScale > 1.15) scaleDirection = -1;
-                if (currentScale < 0.9) scaleDirection = 1;
-                
-                brokenHeart.style.transform = `scale(${currentScale + 0.01 * scaleDirection})`;
-            }, 50);
-        }
-        
-        // Initialize the page
-        window.addEventListener('DOMContentLoaded', (event) => {
-            createRain();
-            createBrokenHearts();
-            setupWhatsAppButton();
-            animateBrokenHeart();
-            
-            // Add a little bounce to the header
-            const header = document.querySelector('.header_text');
-            header.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                header.style.transition = 'transform 0.5s ease';
-                header.style.transform = 'scale(1)';
-            }, 500);
-            
-            // Make the GIF pulse slightly
-            const gifContainer = document.querySelector('.gif_container');
-            setInterval(() => {
-                gifContainer.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    gifContainer.style.transform = 'scale(1)';
-                }, 500);
-            }, 3000);
-            
-            // Add crack sound effect on heart click (optional)
-            const brokenHeartElement = document.getElementById('brokenHeart');
-            brokenHeartElement.addEventListener('click', function() {
-                this.style.animation = 'none';
-                setTimeout(() => {
-                    this.style.animation = '';
-                }, 10);
-                
-                // Create a visual crack effect
-                const cracks = document.createElement('div');
-                cracks.innerHTML = '✖✖';
-                cracks.style.position = 'absolute';
-                cracks.style.color = '#ff0000';
-                cracks.style.fontSize = '30px';
-                cracks.style.opacity = '0.7';
-                cracks.style.animation = 'fadeOut 1s forwards';
-                cracks.style.zIndex = '10';
-                
-                document.querySelector('.container').appendChild(cracks);
-                setTimeout(() => {
-                    cracks.remove();
-                }, 1000);
-            });
+      // Create rain effect
+      function createRain() {
+        const rainContainer = document.getElementById("rainContainer");
+
+        // Create raindrops continuously
+        setInterval(() => {
+          const raindrop = document.createElement("div");
+          raindrop.classList.add("raindrop");
+
+          // Random position and animation
+          const left = Math.random() * 100;
+          const duration = Math.random() * 3 + 2;
+          const delay = Math.random() * 2;
+          const height = Math.random() * 15 + 10;
+
+          raindrop.style.left = `${left}%`;
+          raindrop.style.animationDuration = `${duration}s`;
+          raindrop.style.animationDelay = `${delay}s`;
+          raindrop.style.height = `${height}px`;
+
+          rainContainer.appendChild(raindrop);
+
+          // Remove raindrop after animation completes
+          setTimeout(() => {
+            raindrop.remove();
+          }, (duration + delay) * 1000);
+        }, 100);
+      }
+
+      // Create broken heart particles
+      function createBrokenHearts() {
+        const heartsContainer = document.getElementById("brokenHeartsContainer");
+        const heartCountElement = document.getElementById("heartCount");
+        let heartCount = 0;
+
+        // Create broken heart pieces continuously
+        setInterval(() => {
+          const heartPiece = document.createElement("div");
+          heartPiece.classList.add("broken-heart-particle");
+          heartPiece.innerHTML = "💔";
+
+          // Random position and animation
+          const left = Math.random() * 100;
+          const size = Math.random() * 15 + 10;
+          const duration = Math.random() * 5 + 3;
+          const delay = Math.random() * 2;
+
+          heartPiece.style.left = `${left}%`;
+          heartPiece.style.fontSize = `${size}px`;
+          heartPiece.style.animationDuration = `${duration}s`;
+          heartPiece.style.animationDelay = `${delay}s`;
+
+          heartsContainer.appendChild(heartPiece);
+          heartCount++;
+          heartCountElement.textContent = heartCount;
+
+          // Remove heart piece after animation completes
+          setTimeout(() => {
+            heartPiece.remove();
+            heartCount--;
+            heartCountElement.textContent = heartCount;
+          }, (duration + delay) * 1000);
+        }, 500);
+      }
+
+      // WhatsApp button interaction
+      function setupWhatsAppButton() {
+        const whatsappBtn = document.getElementById("whatsappBtn");
+
+        // Add click animation
+        whatsappBtn.addEventListener("click", function (e) {
+          this.style.transform = "scale(0.95)";
+          setTimeout(() => {
+            this.style.transform = "";
+          }, 200);
+
+          console.log("WhatsApp button clicked for No page");
         });
+
+        // Optional: Show a tooltip on hover
+        whatsappBtn.addEventListener("mouseenter", function () {
+          this.title = "Click to open WhatsApp for a respectful conversation";
+        });
+      }
+
+      // Animate broken heart in header
+      function animateBrokenHeart() {
+        const brokenHeart = document.getElementById("brokenHeart");
+        let scaleDirection = 1;
+
+        setInterval(() => {
+          const currentScale = parseFloat(window.getComputedStyle(brokenHeart).transform.split(",")[3]) || 1;
+
+          if (currentScale > 1.15) scaleDirection = -1;
+          if (currentScale < 0.9) scaleDirection = 1;
+
+          brokenHeart.style.transform = `scale(${currentScale + 0.01 * scaleDirection})`;
+        }, 50);
+      }
+
+      // Initialize the page
+      window.addEventListener("DOMContentLoaded", (event) => {
+        createRain();
+        createBrokenHearts();
+        setupWhatsAppButton();
+        animateBrokenHeart();
+
+        // Add a little bounce to the header
+        const header = document.querySelector(".header_text");
+        header.style.transform = "scale(1.05)";
+        setTimeout(() => {
+          header.style.transition = "transform 0.5s ease";
+          header.style.transform = "scale(1)";
+        }, 500);
+
+        // Make the GIF pulse slightly
+        const gifContainer = document.querySelector(".gif_container");
+        setInterval(() => {
+          gifContainer.style.transform = "scale(1.02)";
+          setTimeout(() => {
+            gifContainer.style.transform = "scale(1)";
+          }, 500);
+        }, 3000);
+
+        // Add crack sound effect on heart click (optional)
+        const brokenHeartElement = document.getElementById("brokenHeart");
+        brokenHeartElement.addEventListener("click", function () {
+          this.style.animation = "none";
+          setTimeout(() => {
+            this.style.animation = "";
+          }, 10);
+
+          // Create a visual crack effect
+          const cracks = document.createElement("div");
+          cracks.innerHTML = "✖✖";
+          cracks.style.position = "absolute";
+          cracks.style.color = "#ff0000";
+          cracks.style.fontSize = "30px";
+          cracks.style.opacity = "0.7";
+          cracks.style.animation = "fadeOut 1s forwards";
+          cracks.style.zIndex = "10";
+
+          document.querySelector(".container").appendChild(cracks);
+          setTimeout(() => {
+            cracks.remove();
+          }, 1000);
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
