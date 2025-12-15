@@ -90,7 +90,7 @@ function handleNoClick() {
         
         // Beri pesan terakhir
         noButton.textContent = "Baiklah... aku mengerti 💔";
-        noButton.disabled = true;
+        noButton.disabled = false;
         noButton.style.cursor = "not-allowed";
         
         // Redirect setelah jeda 1.5 detik
